@@ -36,6 +36,13 @@ function App() {
     const newSelectedAnswers = [...selectedAnswers];
     newSelectedAnswers[currentQuestion] = answer;
     setSelectedAnswers(newSelectedAnswers);
+
+    // If the question was previously marked, unmark it
+    if (markedQuestions[currentQuestion]) {
+      const newMarkedQuestions = [...markedQuestions];
+      newMarkedQuestions[currentQuestion] = false;
+      setMarkedQuestions(newMarkedQuestions);
+    }
   };
 
   const updateQuestionTime = () => {
@@ -70,11 +77,14 @@ function App() {
     const newMarkedQuestions = [...markedQuestions];
     newMarkedQuestions[currentQuestion] = !newMarkedQuestions[currentQuestion];
     setMarkedQuestions(newMarkedQuestions);
+
+    // Move to the next question after marking
+    handleNextButtonClick();
   };
 
   const calculateScore = () => {
     const score = questions.reduce((acc, question, index) => {
-      return acc + (selectedAnswers[index] === question.answer ? 1 : 0);
+      return acc + (selectedAnswers[index] === question.answer && !markedQuestions[index] ? 1 : 0);
     }, 0);
     setScore(score);
   };
@@ -91,8 +101,8 @@ function App() {
   };
 
   const totalMarked = markedQuestions.filter(marked => marked).length;
-  const totalAttempted = selectedAnswers.filter(answer => answer !== null).length;
-  const totalNotAttempted = questions.length - totalAttempted;
+  const totalAttempted = selectedAnswers.filter((answer, index) => answer !== null && !markedQuestions[index]).length;
+  const totalNotAttempted = questions.length - totalAttempted - totalMarked;
 
   return (
     <div className='container mt-5'>
@@ -176,7 +186,7 @@ function App() {
               </div>
             ))}
           </div>
-          <div className='mt-4'>
+          <div className='list-group-container m-4'>
             <p>Current Time: {currentTime}</p>
             <p>Total Marked: {totalMarked}</p>
             <p>Total Attempted: {totalAttempted}</p>
