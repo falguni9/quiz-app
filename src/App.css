@@ -1,0 +1,85 @@
+body {
+  background-color: #f8f9fa;
+}
+
+.card {
+  max-width: 600px;
+  margin: auto;
+  margin-top: 50px;
+}
+
+.btn {
+  font-size: 18px;
+}
+
+.btn.active {
+  background-color: #007bff;
+  color: white;
+  border: 1px solid #007bff;
+}
+
+.alert {
+  text-align: center;
+}
+
+.list-group-container {
+  margin-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  max-height: 400px; /* Adjust height as needed */
+  overflow-y: auto;
+}
+
+.list-group-item-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.list-group-item {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  border-radius: 50%;
+  text-align: center;
+  background-color: #6c757d;
+  color: white;
+  border: 1px solid #6c757d;
+}
+
+.list-group-item.active {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: white;
+}
+
+.list-group-item.attempted {
+  background-color: #28a745;
+  border-color: #28a745;
+  color: white;
+}
+
+.list-group-item.marked {
+  background-color: #dc3545;
+  border-color: #dc3545;
+  color: white;
+}
+
+.mt-4 {
+  margin-top: 1.5rem;
+}
+
+p {
+  margin: 0.5rem 0;
+}
+
+.time-taken {
+  margin-top: 5px;
+  font-size: 12px;
+  color: #6c757d;
+}
